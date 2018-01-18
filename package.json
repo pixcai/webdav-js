@@ -1,0 +1,46 @@
+{
+  "name": "webdav-js",
+  "version": "1.0.0",
+  "description": "A simple WebDAV implementation in JavaScript",
+  "main": "./dist/webdav-js.js",
+  "scripts": {
+    "test": "jest",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pixcai/webdav-js.git"
+  },
+  "keywords": [
+    "WebDAV"
+  ],
+  "author": "pixcai<pixcai@163.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pixcai/webdav-js/issues"
+  },
+  "homepage": "https://github.com/pixcai/webdav-js#readme",
+  "peerDependencies": {
+    "axios": "^0.17.1"
+  },
+  "devDependencies": {
+    "axios": "^0.17.1",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.1.1",
+    "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "buffer": "^5.0.8",
+    "lodash": "^4.17.4",
+    "url-parse": "^1.2.0",
+    "xml-js": "^1.6.2"
+  },
+  "jest": {
+    "testMatch": [
+      "**/?(*.)(spec|test).js"
+    ]
+  }
+}
