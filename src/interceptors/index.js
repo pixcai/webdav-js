@@ -1,6 +1,6 @@
-import PROPFIND from './PROPFIND';
+import propfind from './propfind';
 
 export default [
-  PROPFIND
+  propfind
 ];
 

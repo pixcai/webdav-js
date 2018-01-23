@@ -1,18 +1,27 @@
 const dotenv = require('dotenv');
+const fs = require('fs');
 const WebDAV = require('.');
 
-dotenv.config({ path: '.env.test' });
+const {
+  WEBDAV_URL,
+  WEBDAV_USERNAME,
+  WEBDAV_PASSWORD
+} = dotenv.parse(fs.readFileSync('.env.test'));
+
+const client = new WebDAV(WEBDAV_URL, {
+  auth: {
+    username: WEBDAV_USERNAME,
+    password: WEBDAV_PASSWORD
+  }
+});
 
 module.exports = {
   testMatch: [
     '**/?(*.)(spec|test).js'
   ],
   globals: {
-    client: new WebDAV(process.env.WEBDAV_URL).auth(
-      process.env.WEBDAV_USERNAME,
-      process.env.WEBDAV_PASSWORD
-    ),
-    WebDAV: WebDAV
+    client,
+    WebDAV
   },
   testEnvironment: 'node'
 };

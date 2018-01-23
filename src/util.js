@@ -1,30 +1,25 @@
+import { js2xml, xml2js } from 'xml-js';
 import _get from 'lodash/get';
 import _compact from 'lodash/compact';
 
-export function getProp(item, name) {
-  return _get(item, _compact(['d:propstat', 'd:prop'].concat(name)));
+export function convertJS2XML(data) {
+  return js2xml({
+    declaration: {
+      attributes: {
+        version: '1.0',
+        encoding: 'utf-8'
+      }
+    },
+    elements: [].concat(data)
+  });
 }
 
-export function getTextProp(item, name) {
-  return _get(item, _compact([].concat(name).concat('_text')));
-}
-
-export function getProps(item) {
-  const prop = (name) => getTextProp(getProp(item, name));
-
-  return {
-    displayName: prop('d:displayname'),
-    owner: prop('d:owner'),
-    getLastModified: prop('d:getlastmodified'),
-    getContentType: prop('d:getcontenttype'),
-    getContentLength: parseInt(prop('d:getcontentlength'), 10),
-    resourceType: _get(Object.keys(getProp(item, [
-      'd:resourcetype'
-    ])), '0', '').substr(2),
-    currentUserPrivilegeSet: _compact([].concat(getProp(item, [
-      'd:current-user-privilege-set',
-      'd:privilege'
-    ])).map((privilege) => _get(Object.keys(privilege), '0', '').substr(2)))
-  }
+export function convertXML2JS(data) {
+  return xml2js(data, {
+    spaces: 2,
+    compact: true,
+    ignoreDeclaration: true,
+    ignoreInstruction: true
+  });
 }
 

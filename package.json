@@ -4,7 +4,7 @@
   "description": "A simple WebDAV implementation in JavaScript",
   "main": "./dist/webdav-js.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "webpack"
   },
   "repository": {
@@ -29,6 +29,7 @@
     "babel-loader": "^7.1.2",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
     "dotenv": "^4.0.0",
     "jest": "^22.1.1",
     "webpack": "^3.10.0"
