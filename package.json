@@ -4,7 +4,7 @@
   "description": "A simple WebDAV implementation in JavaScript",
   "main": "./dist/webdav-js.js",
   "scripts": {
-    "test": "jest --coverage",
+    "test": "jest",
     "build": "webpack"
   },
   "repository": {
