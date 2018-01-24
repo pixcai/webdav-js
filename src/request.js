@@ -3,17 +3,21 @@ import parse from 'url-parse';
 import { Buffer } from 'buffer';
 import _defaultsDeep from 'lodash/defaultsDeep';
 import _trim from 'lodash/trim';
+import _trimEnd from 'lodash/trimEnd';
+import _trimStart from 'lodash/trimStart';
 
 export default class Request {
   constructor(baseURL, _options) {
     const url = parse(baseURL);
-    const pathname = url.pathname;
+    const pathname = _trimEnd(url.pathname, '/');
 
     this._instance = axios.create(_defaultsDeep({
       baseURL: url.origin,
-      url: pathname
     }, _options));
-
+    this._instance.interceptors.request.use((config) => ({
+      ...config,
+      url: [pathname, _trimStart(config.url, '/')].join('/')
+    }), e => Promise.reject(e));
     this._instance.interceptors.response.use((response) => ({
       headers: response.headers,
       data: response.data,
