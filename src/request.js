@@ -15,6 +15,7 @@ export default class Request {
     }, _options));
 
     this._instance.interceptors.response.use((response) => ({
+      headers: response.headers,
       data: response.data,
       status: response.status,
       statusText: response.statusText
